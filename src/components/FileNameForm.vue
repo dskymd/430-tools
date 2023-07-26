@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { renderToWebStream } from 'vue/server-renderer';
 
 // defineProps<{ msg: string }>()
 const emit = defineEmits(['update:code'])

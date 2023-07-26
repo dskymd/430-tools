@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { renderToWebStream } from 'vue/server-renderer';
 
 // defineProps<{ msg: string }>()
 const emit = defineEmits(['update:code'])
@@ -80,8 +81,9 @@ const idListTextLower = computed(() => idListText.value.toLocaleLowerCase())
 
 const fileListText = computed(() => {
 
-  const xx = items.value.map(({ files }) => files.join(',')).join('\n')
-  return xx
+  const itemsWithComma = items.value.map(({ files }) => files.join(','))
+  const itemsWithQuots = itemsWithComma.map((row: string) => `"${row}"`)// 各要素に "" 追加
+  return itemsWithQuots.join('\n') // 各要素に改行コードで文字列に
 })
 
 const updateCode = (val: Event) => {

@@ -26,9 +26,9 @@ const inputFileName = ref(`
 23_153_N_3B_DOWN_JACKET_RED_2.jpg
 23_153_N_3B_DOWN_JACKET_SAGE_1.jpg
 23_153_N_3B_DOWN_JACKET_SAGE_2.jpg
-23_154__3LT_DOWN_JACKET_CYT_1_cover.jpg
 23_154_3LT_DOWN_JACKET_BLK_1.jpg
 23_154_3LT_DOWN_JACKET_BLK_2.jpg
+23_154_3LT_DOWN_JACKET_CYT_1_cover.jpg
 23_154_3LT_DOWN_JACKET_CYT_1.jpg
 23_154_3LT_DOWN_JACKET_CYT_2.jpg
 23_154_3LT_DOWN_JACKET_CYT_10.jpg
@@ -50,8 +50,12 @@ const items = computed<Item[]>(() => {
 
     if (id === tmpId) {
       // 前回と同じIDのファイル
-
-      files.push(`${inputFilePath.value}${fileNameArray.value[i]}`.trim())
+      const isCover = new RegExp('_cover').test(fileNameArray.value[i])
+      if (isCover) {
+        files.unshift(`${inputFilePath.value}${fileNameArray.value[i]}`.trim())
+      } else {
+        files.push(`${inputFilePath.value}${fileNameArray.value[i]}`.trim())
+      }
     } else {
       // 新しいIDのファイル
 

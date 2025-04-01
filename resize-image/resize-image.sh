@@ -10,7 +10,7 @@ for jpgfile in ./images/*.jpg; do
   echo "resizing.... $basename"
 
 
-  convert $jpgfile -strip -auto-orient -quality $quality -density 72 -units PixelsPerInch -geometry $size -gravity center -background white -extent $size "./images-resized/$basename"
+  magick $jpgfile -strip -auto-orient -quality $quality -density 72 -units PixelsPerInch -geometry $size -gravity center -background white -extent $size "./images-resized/$basename"
 
 # end loop
 done

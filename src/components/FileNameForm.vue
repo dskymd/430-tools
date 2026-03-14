@@ -85,7 +85,7 @@ const idListTextLower = computed(() => idListText.value.toLocaleLowerCase())
 const fileListText = computed(() => {
 
   const itemsWithComma = items.value.map(({ files }) => files.join(','))
-  const itemsWithQuots = itemsWithComma.map((row: string) => `"${row}"`)// 各要素に "" 追加
+  const itemsWithQuots = itemsWithComma.map((row: string) => `${row}`)// 各要素に "" 追加
   return itemsWithQuots.join('\n') // 各要素に改行コードで文字列に
 })
 
